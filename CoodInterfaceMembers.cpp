@@ -1,7 +1,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <cmath>
-#include "InterfaceReferenceMembers.h"
+#include "CoodInterfaceMembers.h"
 
 // Client function: transferOnGPIB
 void transferOnGPIB(GPIBInstrument& from, GPIBInstrument& to)
@@ -77,6 +77,7 @@ float VoltOn59_VS_GI_GC::maximum() const {return 40.0;}
 // INTERFACE destructor: Voltmeter
 Voltmeter::~Voltmeter(){};
 
+
 VoltyMetrics::VoltyMetrics(GPIBController& controller, int what_address)
 	: my_controller(controller), my_gpib_address(what_address)
 {
@@ -89,28 +90,42 @@ float VoltyMetrics::read()
 }
 
 
-// Client function
+// CLIENT FUNCTION
 float checkCalibration(VoltageSupply& supply, Voltmeter& meter, float test_voltage)
 {
 	supply.set(test_voltage);
 	return abs(test_voltage - meter.read()) / test_voltage;
 }
 
-// Client code
+
+// CLIENT CLASS
+IVTester::IVTester(VoltageSupply& vs, Voltmeter& vm)
+	: the_voltage_supply(vs), the_voltmeter(vm)
+{
+	// empty constructor
+}
+
+double IVTester::current(double voltage)
+{
+	the_voltage_supply.set(voltage);
+	return the_voltmeter.read();
+}
+
+// DRIVER CODE
 int main(int argc, char const *argv[])
 {
 	GPIBController_GC gpib;
 
 	// Check calibration 
 	VoltyMetrics meter(gpib, 14);
-	Acme130_VS_GI_GC supply1(gpib, 12);
-	VoltOn59_VS_GI_GC supply2(gpib, 13);
+	Acme130_VS_GI_GC supply(gpib, 12);
+	IVTester iv(supply, meter);
+	double v_step = 1.0;
 
-	std::cout << "Acme130_VS_GI_GC relative error at 1V is: " 
-		<< checkCalibration(supply1, meter, 1.0) << std::endl;
-	std::cout << "Acme130_VS_GI_GC relative error at 1V is: " 
-		<< checkCalibration(supply2, meter, 1.0) << std::endl;
-
+	for (int i = 0; i < 3; ++i)
+	{
+		std::cout << iv.current(v_step * i) << std::endl;
+	}
 	return 0;
 }
 

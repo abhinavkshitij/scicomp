@@ -96,7 +96,7 @@ float checkCalibration(VoltageSupply& supply, Voltmeter& meter, float test_volta
 	return abs(test_voltage - meter.read()) / test_voltage;
 }
 
-// Client code
+// DRIVER CODE
 int main(int argc, char const *argv[])
 {
 	GPIBController_GC gpib;

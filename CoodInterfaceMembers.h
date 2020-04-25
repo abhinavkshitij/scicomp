@@ -99,4 +99,20 @@ public:
 
 
 // Client function calling interface base classes VoltageSupply, Voltmeter 
-float checkCalibration(VoltageSupply& supply, Voltmeter& meter, float test_voltage);
+float checkCalibration(VoltageSupply& supply, 
+					   Voltmeter& meter, 
+					   float test_voltage);
+
+
+// CONCRETE CLASS
+class IVTester
+{
+private:
+	VoltageSupply& the_voltage_supply;
+	Voltmeter& the_voltmeter;
+public:
+	IVTester(VoltageSupply& vs, Voltmeter& vm);
+	double current(double voltage);
+};
+
+

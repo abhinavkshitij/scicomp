@@ -88,7 +88,7 @@ float checkCalibration2(VoltOn59& supply, VoltyMetrics& meter, float test_voltag
 	return fabs(test_voltage - meter.read()) / test_voltage;
 }
 
-// Client code
+// DRIVER CODE
 int main(int argc, char const *argv[])
 {
 	GPIBController_Stub gpib;

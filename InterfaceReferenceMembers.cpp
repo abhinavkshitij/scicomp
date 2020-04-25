@@ -3,29 +3,6 @@
 #include <cmath>
 #include "InterfaceReferenceMembers.h"
 
-// Controller
-void GPIBController_Stub::insert(const char* device_name, unsigned int address)
-{
-	std::cout << device_name << " now at address " << address << std::endl;
-}
-void GPIBController_Stub::send(unsigned int address, const char* cmd)
-{
-	std::cout << "GPIB instrument # " << address << " sends " << cmd
-	<< std::endl;
-}
-void GPIBController_Stub::send(unsigned int address, float f)
-{
-	std::cout << "GPIB instrument# " << address << " sends value " << f 
-	<< std::endl;
-}
-float GPIBController_Stub::receive(unsigned int address)
-{
-	std::cout << "Please enter number for GPIB instrument #" << address << ": ";
-	float f;
-	std::cin >> f;
-	return f;
-}
-
 // Client function: transferOnGPIB
 void transferOnGPIB(GPIBInstrument& from, GPIBInstrument& to)
 {
@@ -54,12 +31,11 @@ float GPIBController_GC::receive(unsigned int address)
 	std::cin >> f;
 	return f;
 }
-
-// Interface destructor: Voltage Supply
+// Interface destructor: Controller
 GPIBController::~GPIBController(){};	
 
 // Interface destructor: Voltage Supply
- VoltageSupply::~VoltageSupply(){};
+VoltageSupply::~VoltageSupply(){};
 
 
 // Voltage supply 1: ACME 130

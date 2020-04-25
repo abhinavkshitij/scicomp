@@ -12,16 +12,6 @@ public:
 // Client function: transferOnGPIB
 void transferOnGPIB(GPIBInstrument& from, GPIBInstrument& to);
 
-// Controller: Concrete Class with no Interface 
-class GPIBController_Stub
-{
-public:
-	void insert(const char* device_name, unsigned int address);
- 	void send(unsigned int address, const char* cmd);
- 	void send(unsigned int address, float f);
-	float receive(unsigned int address);
-};
-
 // INTERFACE: Controller base interface
 class GPIBController
 {
@@ -30,7 +20,6 @@ public:
  	virtual void send(unsigned int address, const char* cmd) = 0;
  	virtual void send(unsigned int address, float f) = 0;
 	virtual float receive(unsigned int address) = 0; 
-
 	virtual ~GPIBController();	
 };
 

@@ -98,7 +98,7 @@ SimulatorFactory::~SimulatorFactory(){}
 GPIBController_GIS::GPIBController_GIS(const SimulatorFactory& factory)
 	: simulator_factory(factory), simulators(31)
 {
-	simulators = {};
+	simulators = 0;
 }
 
 GPIBController_GIS::~GPIBController_GIS()

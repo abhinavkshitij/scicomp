@@ -92,13 +92,13 @@ void SimpleArray<T>::setSize(int n)
 }
 
 
-// Test Driver 
-int main(int argc, char const *argv[])
-{
-	SimpleArray<double> a(3);
-	a = 4;
-	std::cout << a[1] << std::endl; 
-	return 0;
-}
+// // Test Driver 
+// int main(int argc, char const *argv[])
+// {
+// 	SimpleArray<double> a(3);
+// 	a = 4;
+// 	std::cout << a[1] << std::endl; 
+// 	return 0;
+// }
 
 

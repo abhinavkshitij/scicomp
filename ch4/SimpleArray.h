@@ -1,3 +1,4 @@
+#pragma once
 template<class T> 
 class SimpleArray
 {
@@ -16,4 +17,5 @@ public:
 	SimpleArray<T>& operator=(T);		// Scalar assignment
 	void setSize(int n); 				// Change size	
 };
+
 

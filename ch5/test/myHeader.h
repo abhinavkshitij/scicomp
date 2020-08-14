@@ -8,3 +8,4 @@ public:
 	T show();	
 };
 
+extern template class abc<int>;

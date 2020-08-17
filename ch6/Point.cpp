@@ -24,6 +24,12 @@ Number Point::distance(Line line) const {
 	return line.distance(*this);
 };		
 
+// Angle between two points
+Number Point::angle(Point p1, Point p3){
+	// Number v_dot = abs()
+	return 0.0;
+} 	
+
 Number& Point::x(){
 	return the_x; // Return type of the_x is an address 
 }
@@ -39,5 +45,6 @@ Number& Point::y(){
 Number Point::y() const {
 	return the_y;
 }
+
 
 

@@ -91,6 +91,11 @@ void SimpleArray<T>::setSize(int n)
 	}
 }
 
+template class SimpleArray<int>;
+template class SimpleArray<Point>;
+template class SimpleArray<SimpleArray<int> >;
+
+
 
 // // Test Driver 
 // int main(int argc, char const *argv[])

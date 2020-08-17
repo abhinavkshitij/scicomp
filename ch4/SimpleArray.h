@@ -1,4 +1,5 @@
 #pragma once
+#include "../ch6/Point.h"
 template<class T> 
 class SimpleArray
 {
@@ -16,6 +17,5 @@ public:
 	SimpleArray<T>& operator=(const SimpleArray<T>&); // Array assignment
 	SimpleArray<T>& operator=(T);		// Scalar assignment
 	void setSize(int n); 				// Change size	
+
 };
-
-

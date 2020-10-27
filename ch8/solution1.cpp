@@ -52,7 +52,7 @@ int main(int argc, char const *argv[])
 	// Read maximum angle threshold and check elements
 	Number angle_threshold;
 	read_file >> angle_threshold;
-	cout << "Max angle = " << angle_threshold << endl;
+	cout << "Check angles, threshold = " << angle_threshold << endl;
 	Boolean anglesOK = Boolean::True;
 	for (int eltNum = 0; eltNum < numElements; ++eltNum){
 		Element& e = elementTable[eltNum];
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
 			anglesOK = Boolean::False;
 		}
 	}
-	return anglesOK ? EXIT_SUCCESS : EXIT_FAILURE;
+	return anglesOK ? EXIT_SUCCESS : EXIT_FAILURE; // Generates error code 1
 }
 
 

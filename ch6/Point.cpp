@@ -24,10 +24,13 @@ Number Point::distance(Line line) const {
 	return line.distance(*this);
 };		
 
-// Angle between two points
-Number Point::angle(Point p1, Point p3){
-	// Number v_dot = abs()
-	return 0.0;
+// Angle between two points (p1.angle(p2,p3), vertex at 2)
+Number Point::angle(Point p2, Point p3){
+	Number opp = abs( (the_x-p2.x()) * (p3.y()-p2.y()) - (p3.x()-p2.x()) * (the_y-p2.y()) );
+	Number adj = (the_x-p2.x()) * (p3.x()-p2.x()) + (the_y-p2.y()) * (p3.y()-p2.y());
+	Number angle_deg = 180 / M_PI * atan2(opp,adj); 
+
+	return angle_deg;
 } 	
 
 Number& Point::x(){

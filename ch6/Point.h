@@ -21,7 +21,8 @@ public:
 	Point(Number x, Number y);			// Create from (x,y)
 	Number distance(Point point) const;	// Distance to another point
 	Number distance(Line line) const;	// Distance to a line
-	Number angle(Point p1, Point p3); 	// Angle between two points
+	Number angle(Point p1, Point p2); 	// Angle between two points 
+										// (p1.angle(p2,p3), vertex at 2)
 	Number& x();						// Reference to x-coordinate
 	Number x() const;					// Get x-coordinate
 	Number& y();						// Reference to y-coordinate

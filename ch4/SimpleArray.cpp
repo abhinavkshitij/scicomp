@@ -43,14 +43,14 @@ SimpleArray<T>::~SimpleArray()
 	
 
 template<class T> 
-T& SimpleArray<T>::operator[](int i)
+T& SimpleArray<T>::operator[](int i) const
 {
 	return ptr_to_data[i];
 }
 
 
 template<class T> 
-int SimpleArray<T>::numElts()
+int SimpleArray<T>::numElts() const
 {
 	return num_elts;
 }

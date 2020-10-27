@@ -18,8 +18,8 @@ int main(int argc, char const *argv[])
 	const Point p2 = p1;
 	cout << p2.x() << endl;	// Uses const x()
 	// Cannot re-≥assign const objects 
-	p2.x() = 3;				// WRONG:lvalue required as left operand of assignment
-	p2.y() = 4;				// WRONG:lvalue required as left operand of assignment
+	// p2.x() = 3;				// WRONG:lvalue required as left operand of assignment
+	// p2.y() = 4;				// WRONG:lvalue required as left operand of assignment
 
 	return 0;
 }

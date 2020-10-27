@@ -2,9 +2,11 @@
 #include "../ch4/SimpleArray.h"
 #include "../ch6/Point.h"
 #include "../ch6/Line.h"
+#include "../ch6/SciEng/Boolean.h"
 
 #include <iostream>
 #include <fstream>
+#include <cstddef>
 
 typedef SimpleArray<int> Element;
 extern Number maxAngle(const Element& e, const SimpleArray<Point>& nodeTable);
@@ -30,7 +32,6 @@ int main(int argc, char const *argv[])
 	}
 	cout << endl << endl;
 
-	
 
 	// Read element data
 	cout << "Element count: " << numElements << endl;
@@ -46,19 +47,32 @@ int main(int argc, char const *argv[])
 		} 
 		cout << endl;
 	}
+	cout << endl;
 
-
-
-	return 0;
+	// Read maximum angle threshold and check elements
+	Number angle_threshold;
+	read_file >> angle_threshold;
+	cout << "Max angle = " << angle_threshold << endl;
+	Boolean anglesOK = Boolean::True;
+	for (int eltNum = 0; eltNum < numElements; ++eltNum){
+		Element& e = elementTable[eltNum];
+		if (maxAngle(e, nodeTable) > angle_threshold){
+			cout << "Element[";
+			for (int i = 0; i < e.numElts(); ++i){
+				cout << nodeTable[e[i]] << " ";
+			}
+			cout << "] has a large angle." << endl;
+			anglesOK = Boolean::False;
+		}
+	}
+	return anglesOK ? EXIT_SUCCESS : EXIT_FAILURE;
 }
 
 
-Number 
-maxAngle(Element& e, SimpleArray<Point>& nodeTable){
+Number maxAngle(const Element& e, const SimpleArray<Point>& nodeTable){
 	Number maxang = 0.0;
 	int numNodes = e.numElts();
-	for (int i = 0; i < numNodes; ++i)
-	 {
+	for (int i = 0; i < numNodes; ++i){
 	 	int ccwNodeNum = (i+1) % numNodes;
 	 	int cwNodeNum = (i + numNodes - 1) % numNodes;
 	 	Number angle = nodeTable[e[i]].angle(nodeTable[e[cwNodeNum]], 

@@ -1,4 +1,5 @@
 // Example from pg. 160
+#pragma once
 class Boolean
 {
 private:

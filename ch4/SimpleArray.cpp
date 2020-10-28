@@ -91,9 +91,10 @@ void SimpleArray<T>::setSize(int n)
 	}
 }
 
-template class SimpleArray<int>;
-template class SimpleArray<Point>;
-template class SimpleArray<SimpleArray<int> >;
+// template class SimpleArray<int>;
+// template class SimpleArray<Point>;
+// template class SimpleArray<SimpleArray<int> >;
+// template class SimpleArray<Element>;
 
 
 

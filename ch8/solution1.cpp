@@ -1,5 +1,5 @@
 // Example from pg. 212
-#include "../ch4/SimpleArray.h"
+#include "../ch4/SimpleArray.cpp"
 #include "../ch6/Point.h"
 #include "../ch6/Line.h"
 #include "../ch6/SciEng/Boolean.h"

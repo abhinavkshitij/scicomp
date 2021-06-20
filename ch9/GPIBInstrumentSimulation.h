@@ -48,8 +48,8 @@ public:
 class Acme130_VS_GI_GC: public VoltageSupply
 {
 private:
-	GPIBController& my_controller; // member interface: Controller
-	int my_gpib_address;
+	GPIBController& _controller; // member interface: Controller
+	int _gpib_address;
 public:
 	Acme130_VS_GI_GC(GPIBController& controller, int gpib_address);
 
@@ -64,8 +64,8 @@ public:
 class VoltOn59_VS_GI_GC: public VoltageSupply
 {
 private:
-	GPIBController& my_controller; // member interface: Controller
-	int my_gpib_address;
+	GPIBController& _controller; // member interface: Controller
+	int _gpib_address;
 public:
 	VoltOn59_VS_GI_GC(GPIBController& controller, int gpib_address);
 
@@ -88,8 +88,8 @@ public:
 class VoltyMetrics: public Voltmeter
 {
 private:
-	GPIBController& my_controller;
-	int my_gpib_address;	
+	GPIBController& _controller;
+	int _gpib_address;	
 public:
 	VoltyMetrics(GPIBController& controller, int what_address);
 
@@ -108,8 +108,8 @@ float checkCalibration(VoltageSupply& supply,
 class IVTester
 {
 private:
-	VoltageSupply& the_voltage_supply;
-	Voltmeter& the_voltmeter;
+	VoltageSupply& _voltage_supply;
+	Voltmeter& _voltmeter;
 public:
 	IVTester(VoltageSupply& vs, Voltmeter& vm);
 	double current(double voltage);
@@ -131,7 +131,7 @@ public:
 class ExperimentSimulation
 {
 private:
-	double the_voltage;
+	double _voltage;
 public:
 	void apply(double voltage);
 	double test();	
@@ -141,7 +141,7 @@ public:
 class Acme130Simulation: public GPIBInstrumentSimulation
 {
 private:
-	ExperimentSimulation& the_experiment;
+	ExperimentSimulation& _experiment;
 public:
 	Acme130Simulation(ExperimentSimulation& e);
 	virtual void send(const char*);
@@ -153,7 +153,7 @@ public:
 class VoltyMetricsSimulation: public GPIBInstrumentSimulation
 {
 private:
-	ExperimentSimulation& the_experiment;
+	ExperimentSimulation& _experiment;
 public:
 	VoltyMetricsSimulation(ExperimentSimulation& e);
 	virtual void send(const char*);

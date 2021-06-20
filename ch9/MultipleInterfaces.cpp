@@ -20,9 +20,9 @@ void GPIBController_Stub::send(unsigned int address, float f)
 }
 float GPIBController_Stub::receive(unsigned int address)
 {
-	std::cout << "Please enter number for GPIB instrument #" << address << ": ";
-	float f;
-	std::cin >> f;
+	std::cout << "Enter volts (default=1) for GPIB instrument#" << address << ": ";
+	float f=1.f;
+	// std::cin >> f;
 	return f;
 }
 
@@ -38,9 +38,9 @@ void transferOnGPIB(GPIBInstrument& from, GPIBInstrument& to)
 
 // Voltage supply 1: ACME 130
 Acme130_VS_GI::Acme130_VS_GI(GPIBController_Stub& controller, int gpib_address)
-		: my_controller(controller), my_gpib_address(gpib_address)
+		: _controller(controller), _gpib_address(gpib_address)
 {
-	my_controller.insert("Acme130_VS_GI", gpib_address);
+	_controller.insert("Acme130_VS_GI", gpib_address);
 }
 
 void Acme130_VS_GI::set(float volts)
@@ -57,29 +57,29 @@ float Acme130_VS_GI::maximum() const {return 40.0;}
 // GPIBInstrument interface
 void Acme130_VS_GI::send(const char* cmd)
 {
-	my_controller.send(my_gpib_address, cmd);
+	_controller.send(_gpib_address, cmd);
 }
 void Acme130_VS_GI::send(float volts) 
 {
-	my_controller.send(my_gpib_address, volts);
+	_controller.send(_gpib_address, volts);
 }
 float Acme130_VS_GI::receive() 
 {
-	 return my_controller.receive(my_gpib_address);
+	 return _controller.receive(_gpib_address);
 }
 
 // Voltage supply 2: VoltOn59_VS_GI
  VoltOn59_VS_GI::VoltOn59_VS_GI(GPIBController_Stub& controller, int gpib_address)
-		: my_controller(controller), my_gpib_address(gpib_address)
+		: _controller(controller), _gpib_address(gpib_address)
 {
-	my_controller.insert("VoltOn59_VS_GI", gpib_address);
+	_controller.insert("VoltOn59_VS_GI", gpib_address);
 }
 
 void VoltOn59_VS_GI::set(float volts)
 {
 	if (volts > maximum() || volts < minimum()) 
 		throw std::invalid_argument(" VoltOn59_VS_GI voltage out of range");
-	my_controller.send(my_gpib_address, volts);
+	_controller.send(_gpib_address, volts);
 }
 
 float VoltOn59_VS_GI::minimum() const {return 0.0;}
@@ -88,43 +88,43 @@ float VoltOn59_VS_GI::maximum() const {return 40.0;}
 // GPIBInstrument interface
 void VoltOn59_VS_GI::send(const char* cmd)
 {
-	my_controller.send(my_gpib_address, cmd);
+	_controller.send(_gpib_address, cmd);
 }
 void VoltOn59_VS_GI::send(float volts) 
 {
-	my_controller.send(my_gpib_address, volts);
+	_controller.send(_gpib_address, volts);
 }
 float VoltOn59_VS_GI::receive() 
 {
-	 return my_controller.receive(my_gpib_address);
+	 return _controller.receive(_gpib_address);
 }
 
 // INTERFACE destructor: Voltmeter
 Voltmeter::~Voltmeter(){};
 
 VoltyMetrics::VoltyMetrics(GPIBController_Stub& controller, int what_address)
-	: my_controller(controller), my_gpib_address(what_address)
+	: _controller(controller), _gpib_address(what_address)
 {
-	my_controller.insert("VoltyMetrics", what_address);
+	_controller.insert("VoltyMetrics", what_address);
 }
 
 float VoltyMetrics::read()
 {
-	return my_controller.receive(my_gpib_address);
+	return _controller.receive(_gpib_address);
 }
 
 // GPIBInstrument interface
 void  VoltyMetrics::send(const char* cmd)
 {
-	my_controller.send(my_gpib_address, cmd);
+	_controller.send(_gpib_address, cmd);
 }
 void  VoltyMetrics::send(float volts) 
 {
-	my_controller.send(my_gpib_address, volts);
+	_controller.send(_gpib_address, volts);
 }
 float  VoltyMetrics::receive() 
 {
-	return my_controller.receive(my_gpib_address);
+	return _controller.receive(_gpib_address);
 }
 
 // Client function
@@ -145,9 +145,11 @@ int main(int argc, char const *argv[])
 	VoltOn59_VS_GI supply2(gpib, 13);
 
 	std::cout << "Acme130_VS_GI relative error at 1V is: " 
-		<< checkCalibration(supply1, meter, 1.0) << std::endl;
+		<< checkCalibration(supply1, meter, 6.0) << std::endl;
 	std::cout << "Acme130_VS_GI relative error at 1V is: " 
-		<< checkCalibration(supply2, meter, 1.0) << std::endl;
+		<< checkCalibration(supply2, meter, 8.0) << std::endl;
+
+	transferOnGPIB(supply2, supply1);
 
 	return 0;
 }

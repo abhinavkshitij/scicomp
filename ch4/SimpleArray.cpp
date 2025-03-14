@@ -1,5 +1,6 @@
-#include <iostream>
+// #include <iostream>
 #include "SimpleArray.h"
+#include "../ch8/Mesh.h"
 
 template<class T> 
 SimpleArray<T>::SimpleArray(int n)
@@ -43,14 +44,14 @@ SimpleArray<T>::~SimpleArray()
 	
 
 template<class T> 
-T& SimpleArray<T>::operator[](int i)
+T& SimpleArray<T>::operator[](int i) const
 {
 	return ptr_to_data[i];
 }
 
 
 template<class T> 
-int SimpleArray<T>::numElts()
+int SimpleArray<T>::numElts() const
 {
 	return num_elts;
 }
@@ -90,6 +91,12 @@ void SimpleArray<T>::setSize(int n)
 		ptr_to_data = new T[n];		// and allocate new elements
 	}
 }
+
+template class SimpleArray<int>;
+template class SimpleArray<Point>;
+template class SimpleArray<SimpleArray<int> >;
+// template class SimpleArray<Element>;
+
 
 
 // // Test Driver 

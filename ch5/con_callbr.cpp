@@ -8,7 +8,7 @@ int main(int argc, char const *argv[])
 /* error: cannot bind non-const lvalue reference 
  *		  of type 'int' to an rvalue of type 'int'	
  */	
-	f(3); 
+f(3); 
 
 /* error: cannot bind non-const lvalue reference 
  *		   of type 'int' to an rvalue of type 'int'

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "vector.cpp"
+#include "vector.hpp" // class template instantiation
 using namespace std;
 
 int main(int argc, char const *argv[])

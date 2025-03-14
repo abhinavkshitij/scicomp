@@ -37,8 +37,8 @@ public:
 class Acme130_VS_GI: public VoltageSupply, public GPIBInstrument
 {
 private:
-	GPIBController_Stub my_controller; // member class: Controller
-	int my_gpib_address;
+	GPIBController_Stub _controller; // member class: Controller
+	int _gpib_address;
 public:
 	Acme130_VS_GI(GPIBController_Stub& controller, int gpib_address);
 
@@ -58,8 +58,8 @@ public:
 class VoltOn59_VS_GI: public VoltageSupply, public GPIBInstrument
 {
 private:
-	GPIBController_Stub my_controller; // member class: Controller
-	int my_gpib_address;
+	GPIBController_Stub _controller; // member class: Controller
+	int _gpib_address;
 public:
 	VoltOn59_VS_GI(GPIBController_Stub& controller, int gpib_address);
 
@@ -87,8 +87,8 @@ public:
 class VoltyMetrics: public Voltmeter, public GPIBInstrument
 {
 private:
-	GPIBController_Stub my_controller;
-	int my_gpib_address;	
+	GPIBController_Stub _controller;
+	int _gpib_address;	
 public:
 	VoltyMetrics(GPIBController_Stub& controller, int what_address);
 

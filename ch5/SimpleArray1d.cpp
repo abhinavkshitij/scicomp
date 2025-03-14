@@ -42,17 +42,18 @@ SimpleArray1d<T>::~SimpleArray1d()
 	
 
 template<class T> 
-T& SimpleArray1d<T>::operator[](int i)
+T& SimpleArray1d<T>::operator[](int i) const
 {
 	return ptr_to_data[i];
 }
 
 
 template<class T> 
-int SimpleArray1d<T>::numElts()
+int SimpleArray1d<T>::numElts() const
 {
 	return num_elts;
 }
+
 
 
 template<class T> 
@@ -91,12 +92,16 @@ void SimpleArray1d<T>::setSize(int n)
 }
 
 
-#include <iostream>
-int main(int argc, char const *argv[])
-{
-	SimpleArray1d<double> a(4);
-	a[1] = 1;
-	std::cout << a[1] << std::endl;
- 	return 0;
-}
+
+// Test driver
+// #include <iostream>
+// int main(int argc, char const *argv[])
+// {
+// 	SimpleArray1d<double> a(4);
+// 	a[1] = 1;
+// 	std::cout << a[1] << std::endl;
+//  	return 0;
+// }
+
+
 

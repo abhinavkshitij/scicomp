@@ -15,8 +15,8 @@ public:
 class Acme130
 {
 private:
-	GPIBController_Stub my_controller; // member class: Controller
-	int my_gpib_address;
+	GPIBController_Stub _controller; // member class: Controller
+	int _gpib_address;
 public:
 	Acme130(GPIBController_Stub& controller, int gpib_address);
 	void set(float volts);
@@ -29,8 +29,8 @@ public:
 class VoltOn59
 {
 private:
-	GPIBController_Stub my_controller; // member class: Controller
-	int my_gpib_address;
+	GPIBController_Stub _controller; // member class: Controller
+	int _gpib_address;
 public:
 	VoltOn59(GPIBController_Stub& controller, int gpib_address);
 	void set(float volts);
@@ -43,8 +43,8 @@ public:
 class VoltyMetrics
 {
 private:
-	GPIBController_Stub my_controller;
-	int my_gpib_address;	
+	GPIBController_Stub _controller;
+	int _gpib_address;	
 public:
 	VoltyMetrics(GPIBController_Stub& controller, int what_address);
 	float read();

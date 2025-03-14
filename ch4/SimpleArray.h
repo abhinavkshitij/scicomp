@@ -1,4 +1,5 @@
 #pragma once
+#include "../ch6/Point.h"
 template<class T> 
 class SimpleArray
 {
@@ -11,11 +12,9 @@ public:
 	SimpleArray();  					// Create array of 0 elements
 	SimpleArray(const SimpleArray<T>&);	// Copy array
 	~SimpleArray();						// Destroy array
-	T& operator[](int i);				// Subscripting 
-	int numElts();						// Number of elements
+	T& operator[](int i) const;				// Subscripting 
+	int numElts() const;						// Number of elements
 	SimpleArray<T>& operator=(const SimpleArray<T>&); // Array assignment
 	SimpleArray<T>& operator=(T);		// Scalar assignment
 	void setSize(int n); 				// Change size	
 };
-
-

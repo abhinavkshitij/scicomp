@@ -97,7 +97,7 @@ class GPIBController_GIS: public GPIBController
 {
 private:
 	const SimulatorFactory& simulator_factory;
-	std::vector<GPIBInstrumentSimulation*> simulators;
+	CheckedSimpleArray<GPIBInstrumentSimulation*> simulators;
 	ExperimentSimulation the_experiment;
 public:
 	GPIBController_GIS(const SimulatorFactory& factory);

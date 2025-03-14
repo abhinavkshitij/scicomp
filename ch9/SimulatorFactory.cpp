@@ -5,6 +5,7 @@
 #include <iterator>
 #include <algorithm>
 #include <vector>
+#include "CheckedSimpleArray.h"
 #include "SimulatorFactory.h"
 
 // Client function: transferOnGPIB
@@ -69,7 +70,6 @@ float Acme130Simulation::receive()
 	//
 }
 
-
 VoltyMetricsSimulation::VoltyMetricsSimulation(ExperimentSimulation& e)
 	: the_experiment(e)
 {
@@ -103,10 +103,10 @@ GPIBController_GIS::GPIBController_GIS(const SimulatorFactory& factory)
 
 GPIBController_GIS::~GPIBController_GIS()
 {
-	for (int i = 0; i < simulators.size(); ++i)
-	{
-		delete simulators[i];
-	}
+	// for (int i = 0; i < simulators.numElts(); ++i)
+	// {
+	// 	delete simulators[i];
+	// }
 }
 
 // Insert function: Call factory to register a new intrument to the array.
@@ -274,26 +274,28 @@ double IVTester::current(double voltage)
 }
 
 
-
-
+using namespace std;
+#define LOGLN(msg) (std::cout << msg << std::endl)
 
 // DRIVER CODE
 int main(int argc, char const *argv[])
 {
 	MySimulators simulators;
 	GPIBController_GIS gpib(simulators);
-	
+	LOGLN("Building factory");
+
+
 	// Check calibration 
 	Acme130_VS_GI_GC supply(gpib, 12);
 	VoltyMetrics_VM_GI meter(gpib, 13);
 
 	IVTester iv(supply, meter);
-	double v_step = 1.0;
-	for (int i = 0; i < 10; ++i)
-	{
-		std::cout << iv.current(v_step * i) << std::endl;
-	}
+	double v_step = 1.f;
 
+
+	for (int i = 0; i < 10; ++i){
+		LOGLN(iv.current(v_step * i));
+	}
 
 
 	return 0;

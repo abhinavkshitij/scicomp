@@ -1,5 +1,6 @@
-#include <iostream>
+// #include <iostream>
 #include "SimpleArray.h"
+#include "../ch8/Mesh.h"
 
 template<class T> 
 SimpleArray<T>::SimpleArray(int n)
@@ -91,9 +92,9 @@ void SimpleArray<T>::setSize(int n)
 	}
 }
 
-// template class SimpleArray<int>;
-// template class SimpleArray<Point>;
-// template class SimpleArray<SimpleArray<int> >;
+template class SimpleArray<int>;
+template class SimpleArray<Point>;
+template class SimpleArray<SimpleArray<int> >;
 // template class SimpleArray<Element>;
 
 
